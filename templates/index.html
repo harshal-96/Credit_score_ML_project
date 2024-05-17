@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Score Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+        form {
+            display: grid;
+            grid-gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 7l5 5 5-5H5z' fill='%23333333'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Loan Score Prediction</h1>
+        <form action="/predict" method="post">
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" min="18" max="100" required>
+            
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <label for="income">Income:</label>
+            <input type="number" name="income" id="income" min="0" required>
+            
+            <label for="credit_history_length">Credit History Length:</label>
+            <input type="number" name="credit_history_length" id="credit_history_length" min="0" required>
+            
+            <label for="num_existing_loans">Number of Existing Loans:</label>
+            <input type="number" name="num_existing_loans" id="num_existing_loans" min="0" required>
+            
+            <label for="loan_amount">Loan Amount:</label>
+            <input type="number" name="loan_amount" id="loan_amount" min="0" required>
+            
+            <label for="loan_tenure">Loan Tenure:</label>
+            <input type="number" name="loan_tenure" id="loan_tenure" min="0" required>
+            
+            <label for="existing_customer">Existing Customer:</label>
+            <select name="existing_customer" id="existing_customer" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            
+            <label for="state">State:</label>
+            <select name="state" id="state" required>
+                {% for state in states %}
+                <option value="{{ state }}">{{ state }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="city">City:</label>
+            <select name="city" id="city" required>
+                {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="ltv_ratio">LTV Ratio:</label>
+            <input type="number" name="ltv_ratio" id="ltv_ratio" min="0" step="0.01" required>
+            
+            <label for="employment_profile">Employment Profile:</label>
+            <select name="employment_profile" id="employment_profile" required>
+                {% for profile in employment_profiles %}
+                <option value="{{ profile }}">{{ profile }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="occupation">Occupation:</label>
+            <select name="occupation" id="occupation" required>
+                {% for occupation in occupations %}
+                <option value="{{ occupation }}">{{ occupation }}</option>
+                {% endfor %}
+            </select>
+            
+            <input type="submit" value="Predict Loan Score">
+        </form>
+    </div>
+</body>
+</html>
+
+
 
